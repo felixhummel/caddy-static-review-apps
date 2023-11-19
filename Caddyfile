@@ -1,0 +1,14 @@
+{
+	debug
+}
+
+:8080 {
+	# https://caddyserver.com/docs/caddyfile/directives/map#examples
+	map {host} {source_directory} {
+		0-main.de "/var/www/0-main.de/main"
+		www.0-main.de "/var/www/0-main.de/main"
+		~(.*)\.0-main\.de$ "/var/www/0-main.de/${1}"
+	}
+	root {source_directory}
+	file_server
+}
